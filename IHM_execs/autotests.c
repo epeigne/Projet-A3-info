@@ -237,7 +237,7 @@ float testVisualisationT(){
 		fclose(pf);
 		
 		// Create lock file if only it does not exist
-		pf = fopen(".verrouData","wx");
+		pf = fopen(".verrouData","w+");
 		if(pf==NULL){
 			perror("in testu_visualisationT.c, file verrouData : error to create");
 			return score;
