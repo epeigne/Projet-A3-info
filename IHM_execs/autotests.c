@@ -5,6 +5,7 @@
 #include "../code/visualisationC.h"
 #include "../code/visualisationT.h"
 #include "../code/regulation.h"
+#include "autotests.h"
 #include <math.h>
 float testConsigne(){
 	
