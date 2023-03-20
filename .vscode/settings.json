@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "string.h": "c",
+        "consigne.h": "c",
+        "visualisationt.h": "c",
+        "visualisationc.h": "c",
+        "regulation.h": "c",
+        "autotests.h": "c"
+    }
+}
