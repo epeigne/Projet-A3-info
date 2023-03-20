@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <unistd.h>
-#include "autotests.h"
-#include "../code/consigne.h"
-#include "../code/visualisationC.h"
-#include "../code/visualisationT.h"
-#include "../code/regulation.h"
-#include "autotests.h"
+#include "consigne.h"
+#include "visualisationT.h"
+#include "visualisationC.h"
+#include "regulation.h"
 #include <math.h>
 float testConsigne(){
 	
@@ -237,7 +235,15 @@ float testVisualisationT(){
 		fclose(pf);
 		
 		// Create lock file if only it does not exist
-		pf = fopen(".verrouData","w+");
+		
+		
+		
+		if( access( ".verrouData", F_OK )!=-1)
+		{
+			perror("in testu_visualisationT.c, file verrouData : existe deja");
+			return score;
+		}
+		pf = fopen(".verrouData","w");
 		if(pf==NULL){
 			perror("in testu_visualisationT.c, file verrouData : error to create");
 			return score;
@@ -410,7 +416,13 @@ float testVisualisationC(){
 		fclose(pf);
 	
 		// Create lock file
-		pf = fopen(".verrouData","wx");
+		
+		if( access( ".verrouData", F_OK )!=-1)
+		{
+			perror("in testu_visualisationC.c, file verrouData : existe deja");
+			return score;
+		}
+		pf = fopen(".verrouData","w");
 		if(pf==NULL){
 			perror("in testu_visualisationC.c, file verrouData : error to create");
 			return score;
@@ -603,7 +615,7 @@ float testRegulationPID(){
 	cmd=cmd_target+100;
 	
 	attendu[0]=0.55;
-	for(i=1;i<nTT;i++){
+	for(i=1;i<nTTb;i++){
 	  attendu[i] = attendu[i-1]+1;
 	}
 	
