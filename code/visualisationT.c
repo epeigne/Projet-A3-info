@@ -9,7 +9,7 @@ void visualisationT(temp_t myTemp)
         if (readFile == NULL) //check if data.txt exists
         {
             printf("Fichier data.txt inexistant\n");
-            exit(0);
+            exit(1);
         }
 
         char heat[8];
