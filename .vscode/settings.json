@@ -4,6 +4,7 @@
         "consigne.h": "c",
         "visualisationt.h": "c",
         "visualisationc.h": "c",
-        "regulation.h": "c"
+        "regulation.h": "c",
+        "autotests.h": "c"
     }
 }

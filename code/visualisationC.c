@@ -10,6 +10,7 @@ void visualisationC(float puissance_f){
    // check if file .verrouData exist (if so we can't modify data.txt)
    if (access(".verrouData", F_OK) == 0) {
       // .verrouData exists
+      printf("data.txt locked !");
       return;
    }
    
@@ -29,6 +30,7 @@ void visualisationC(float puissance_f){
    float Tint;
    float Text;
    fscanf(data,"%s\n%f\n%f", chauffage, Tint, Text);
+   printf("chauffage : %s\nTint : %f\nText : %f\n", chauffage, Tint, Text);
    
    // writing in data.txt 
    if (puissance_f == 0){
