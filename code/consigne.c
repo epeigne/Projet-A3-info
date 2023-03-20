@@ -15,7 +15,7 @@
             return 0;
          }
 
-         fscanf(readFile, "%f", &thermostat_f);
+         fscanf(readFile, "%f", &thermostat_f); //read consigne.txt
          fclose(readFile);
 
          FILE* lockfile = fopen(".verrouConsigne", "w");
