@@ -32,7 +32,6 @@
 		else{
 			cmd = 0;
 		}
-		printf("%f \n", cmd);
 		return cmd;
 	}
     
