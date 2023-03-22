@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <unistd.h>
-#include "consigne.h"
-#include "visualisationT.h"
-#include "visualisationC.h"
-#include "regulation.h"
+#include "../code/consigne.h"
+#include "../code/visualisationC.h"
+#include "../code/visualisationT.h"
+#include "../code/regulation.h"
 #include <math.h>
 float testConsigne(){
 	
