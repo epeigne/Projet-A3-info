@@ -8,28 +8,20 @@
 		if(regul == 1){
 			for (int i = 0; i < nT; i++)
 			{
-				cmd = regulation(consigne,tabT[i-1], tabT[i]);
+				cmd = regulation(consigne,tabT[i]);
 			}
 		}
 
 		return cmd;
 	}
 
-	float regulation(float consigne, float oldT, float newT){
-		float cmd;
+	float regulation(float consigne, float tempInt){
 
-		if(consigne > 0){
-			if(newT < oldT){
-				cmd = 50;
-			}
-			else{
-				cmd = 0;
-			}
-		}
-		else{
-			cmd = 0;
-		}
-		return cmd;
+		// check if the temperature is lower than the consigne
+		// if yes, return 50 else return 0
+
+		return consigne < tempInt ? 50 : 0;
+	
 	}
     
   
