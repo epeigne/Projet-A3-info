@@ -20,7 +20,15 @@
 		// check if the temperature is lower than the consigne
 		// if yes, return 50 else return 0
 
-		return consigne < tempInt ? 50 : 0;
+		float cmd;
+
+		if(tempInt < consigne){
+			cmd = 50;
+		}else{
+			cmd = 0;
+		}
+
+		return cmd;
 	
 	}
     
