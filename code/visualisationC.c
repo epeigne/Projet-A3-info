@@ -25,7 +25,6 @@ void visualisationC(float puissance_f){
    fscanf(readingData, "%s", chauffage);
    fscanf(readingData, "%f", &Tint);
    fscanf(readingData, "%f", &Text);
-   printf(" -- visualisationC --\n\nchauffage : %s\nTint : %f\nText : %f\n", chauffage, Tint, Text);
    fclose(readingData);
    
    FILE* lockfile = fopen(".verrouData","w"); // creating .verrouData file
