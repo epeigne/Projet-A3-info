@@ -8,7 +8,7 @@ void visualisationT(temp_t myTemp)
         
         if (readFile == NULL) //check if data.txt exists
         {
-            printf("Fichier data.txt inexistant\n");
+            // printf("Fichier data.txt inexistant\n");
             return;
         }
 
