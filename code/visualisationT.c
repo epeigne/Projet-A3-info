@@ -9,11 +9,11 @@ void visualisationT(temp_t myTemp)
         if (readFile == NULL) //check if data.txt exists
         {
             printf("Fichier data.txt inexistant\n");
-            exit(0);
+            return;
         }
 
         char heat[8];
-        fscanf(readFile, "%[^\n]", heat); //get first line of data.txt
+        fscanf(readFile, "%s", heat); //get first line of data.txt
         fclose(readFile);
 
         //open files
