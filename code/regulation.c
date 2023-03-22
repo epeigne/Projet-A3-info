@@ -8,24 +8,22 @@
 		if(regul == 1){
 			for (int i = 0; i < nT; i++)
 			{
-				cmd = regulation(consigne,tabT, nT);
+				cmd = regulation(consigne,tabT[i-1], tabT[i]);
 			}
 		}
 
 		return cmd;
 	}
 
-	float regulation(float consigne, float* tabT, int nT){
+	float regulation(float consigne, float oldT, float newT){
 		float cmd;
 
 		if(consigne > 0){
-			for(int i = 1; i < nT; i++){
-				if(tabT[i] <= tabT[i-1]){
-					cmd = 50;
-				}
-				else{
-					cmd = 0;
-				}
+			if(newT < oldT){
+				cmd = 50;
+			}
+			else{
+				cmd = 0;
 			}
 		}
 		else{
