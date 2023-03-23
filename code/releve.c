@@ -42,30 +42,30 @@ void releve(FT_HANDLE ftHandle, temp_t myTemp){
                     //check last 4 bits of the octet and remap it to the right place
                     switch (RxBuffer[i]&0xF0 >> 4)
                     {
-                        case 0b0000:
+                        case 0b0000: //bits 0 to 3 of SOT_ext
                             SOT_ext |= (RxBuffer[i]&0x0F);
                             oct_read++;
                             break;
-                        case 0b0001:
+                        case 0b0001: //bits 4 to 7 of SOT_ext
                             SOT_ext |= (RxBuffer[i]&0x0F) << 4;
                             oct_read++;
                             break;
-                        case 0b0100:
+                        case 0b0100: //bits 8 to 11 of SOT_ext
                             SOT_ext |= (RxBuffer[i]&0x0F) << 8;
                             oct_read++;
                             break;
 
-                        case 0b1000:
+                        case 0b1000: //bits 0 to 3 of SOT_int
                             SOT_int |= (RxBuffer[i]&0x0F);
                             oct_read++;
                             break;
 
-                        case 0b1001:
+                        case 0b1001: //bits 4 to 7 of SOT_int
                             SOT_int |= (RxBuffer[i]&0x0F) << 4;
                             oct_read++;   
                             break;
 
-                        case 0b1100:
+                        case 0b1100: //bits 8 to 11 of SOT_int
                             SOT_int |= (RxBuffer[i]&0x0F) << 8; 
                             oct_read++;       
                             break;
