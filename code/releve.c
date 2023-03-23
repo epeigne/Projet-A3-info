@@ -1,7 +1,7 @@
 #include "releve.h"
 
 
-void releve(FT_HANDLE *card, temp_t myTemp){
+void releve(FT_HANDLE ftHandle, temp_t myTemp){
     int SOT_int = 0; 
     int SOT_ext = 0;
 
@@ -15,7 +15,7 @@ void releve(FT_HANDLE *card, temp_t myTemp){
     char RxBuffer[64];
 
    //check if there is data to read
-    ftStatus = FT_GetStatus(card, &RxBytes, &TxBytes, &EventDWord);
+    ftStatus = FT_GetStatus(ftHandle, &RxBytes, &TxBytes, &EventDWord);
  
     if (ftStatus != FT_OK) {
         printf("Error FT_GetStatus: %d", ftStatus);
@@ -27,7 +27,7 @@ void releve(FT_HANDLE *card, temp_t myTemp){
         if(RxBytes > 0){
 
             //read the data
-            ftStatus = FT_Read(card, RxBuffer, RxBytes, &BytesReturned);
+            ftStatus = FT_Read(ftHandle, RxBuffer, RxBytes, &BytesReturned);
 
             //check if there is an error
             if (ftStatus != FT_OK) {
@@ -39,7 +39,7 @@ void releve(FT_HANDLE *card, temp_t myTemp){
 
                 //get the data from the buffer and create SOTs values
                 for(int i = 0; i < BytesReturned; i++){
-                    //check last 4 bits of the octet
+                    //check last 4 bits of the octet and remap it to the right place
                     switch (RxBuffer[i]&0xF0 >> 4)
                     {
                         case 0b0000:
