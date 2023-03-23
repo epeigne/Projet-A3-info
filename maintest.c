@@ -1,5 +1,5 @@
 #include "autotests.h"
-#include "../code/visualisationC.h"
+#include "code/visualisationC.h"
 #include <stdio.h>
 
 int main(){

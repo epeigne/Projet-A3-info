@@ -9,13 +9,13 @@
 void visualisationC(float puissance_f){
    if (access(".verrouData", F_OK) == 0) { // check if file .verrouData exist (if so we can't modify data.txt)
       // .verrouData exists
-      printf("data.txt locked !");
+      // printf("data.txt locked !");
       return;
    }
    
    FILE* readingData = fopen("data.txt", "r"); // opening data.txt file in write/read mode
    if (readingData == NULL){ // if opening fails
-      printf("Error in opening file");
+      // printf("Error in opening file");
       return;
    }
    
@@ -32,7 +32,7 @@ void visualisationC(float puissance_f){
    
    FILE* writingData = fopen("data.txt", "w+"); // writing in data.txt 
    if (writingData == NULL){ // if opening fails
-      printf("Error in opening file");
+      // printf("Error in opening file");
       return;
    }
    

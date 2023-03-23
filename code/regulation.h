@@ -7,7 +7,7 @@
    // Pensez à bien proteger vos .h avec des ifndef
 	
 float regulationTest(int regul,float consigne,float* tabT, int nT);
-float regulation(float consigne, float oldT, float newT);
-float regulationPID(float newConsigne, float oldConsigne, int iterrationCount, float* I);
+float regulation(float consigne, float tempInt);
+float regulation_PID(float consigne, float* tabT, int nT);
 
 #endif
