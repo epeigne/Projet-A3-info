@@ -6,6 +6,9 @@
 #include "../code/consigne.h"
 #include "../code/visualisationC.h"
 
+#define CHOICE 2 // 1 pour la regulation TOR / 2 pour la regulation PID
+
+
 int main(){
 
 	temp_t temperature;
@@ -16,10 +19,11 @@ int main(){
 	float previousEcart = 0; // ecart precedente pour la regulation PID
 	struct simParam_s*  monSimulateur_ps = simConstruct(temperature); // creation du simulateur, puissance intialis�e � 0%
 	float puissance = 0; // puissance de chauffage
-	float temp_cons = 0; // consigne de temperature
+	float temp_cons = 50; // consigne de temperature
 	
-	int choice;
-	scanf("-entrez 1 pour la régulation TOR \n-entrer 2 pour la régulation PID \n%d", &choice);
+	//int choice = 1;
+	//printf("entrez 1 pour la régulation TOR / entrer 2 pour la régulation PID: "); // choix de la regulation
+	//scanf("%d", &choice); // choix de la regulation
 	
 	while(1){
 
@@ -29,9 +33,10 @@ int main(){
 			break;
 		}
 		// choix de la regulation
-		if (choice == 1){
+
+		if (CHOICE == 1){
 			puissance = regulation(temp_cons, temperature.interieure); // calcul de la puissance de chauffage TOR
-		} else if (choice ==2) {
+		} else if (CHOICE == 2) {
 			puissance = regulationPID(temp_cons, temperature.interieure, &integral, &previousEcart, &previousConsigne); // calcul de la puissance de chauffage PID
 		} else {
 			break;
