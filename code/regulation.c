@@ -5,7 +5,7 @@
 	float regulationTest(int regul,float consigne,float* tabT, int nT){
 		float cmd;
 		
-		if(regul == 1){
+		if(regul == 1){ //regulation TOR
 			for (int i = 0; i < nT; i++)
 			{
 				cmd = regulation(consigne,tabT[i]);
