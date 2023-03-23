@@ -14,13 +14,14 @@ void visualisationT(temp_t myTemp)
 
         char heat[8];
         fscanf(readFile, "%s", heat); //get first line of data.txt
-        fclose(readFile);
+        fclose(readFile); //close data.txt
 
-        //open files
+        //open file data.txt and create .verrouData
         FILE* dataFile = fopen("data.txt", "w");
         FILE* lockfile = fopen(".verrouData", "w");
 
         fprintf(dataFile,"%s\n%.2f\n%.2f",heat,myTemp.interieure,myTemp.exterieure); //write new data in data.txt
+        //close data.txt and .verrouData
         fclose(dataFile);
         fclose(lockfile);
         remove(".verrouData"); //remove .verrouData
