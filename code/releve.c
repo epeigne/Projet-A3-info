@@ -14,10 +14,9 @@ void releve(FT_HANDLE *card, temp_t myTemp){
 
     char RxBuffer[64];
 
-
+   //check if there is data to read
     ftStatus = FT_GetStatus(card, &RxBytes, &TxBytes, &EventDWord);
-
-    //check if there is data to read
+ 
     if (ftStatus != FT_OK) {
         printf("Error FT_GetStatus: %d", ftStatus);
         return;
