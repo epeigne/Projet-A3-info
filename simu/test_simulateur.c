@@ -11,9 +11,9 @@ int main(){
 	temp_t temperature;
 	temperature.exterieure = 12.0;
 	temperature.interieure = 15.0;
-	float integral = 0;
-	float previousConsigne = 0;
-	float previousEcart = 0;
+	float integral = 0; // integral de l'erreur pour la regulation PID
+	float previousConsigne = 0; // consigne precedente pour la regulation PID
+	float previousEcart = 0; // ecart precedente pour la regulation PID
 	struct simParam_s*  monSimulateur_ps = simConstruct(temperature); // creation du simulateur, puissance intialis�e � 0%
 	float puissance = 0; // puissance de chauffage
 	float temp_cons = 0; // consigne de temperature
@@ -28,11 +28,11 @@ int main(){
 		if(temp_cons < 5){ // si la consigne est inferieur a 5, on arrete le programme
 			break;
 		}
-		
+		// choix de la regulation
 		if (choice == 1){
-			puissance = regulation(temp_cons, temperature.interieure); // calcul de la puissance de chauffage
+			puissance = regulation(temp_cons, temperature.interieure); // calcul de la puissance de chauffage TOR
 		} else if (choice ==2) {
-			puissance = regulationPID(temp_cons, temperature.interieure, &integral, &previousEcart, &previousConsigne); 
+			puissance = regulationPID(temp_cons, temperature.interieure, &integral, &previousEcart, &previousConsigne); // calcul de la puissance de chauffage PID
 		} else {
 			break;
 		}
