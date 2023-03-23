@@ -22,13 +22,13 @@ void visualisationC(float puissance_f){
    char chauffage[8]; // reading Tint and Text
    float Tint;
    float Text;
-   fscanf(readingData, "%s", chauffage);
-   fscanf(readingData, "%f", &Tint);
-   fscanf(readingData, "%f", &Text);
-   fclose(readingData);
+   fscanf(readingData, "%s", chauffage); // reading "true" or "false"
+   fscanf(readingData, "%f", &Tint); // reading Tint
+   fscanf(readingData, "%f", &Text);   // reading Text
+   fclose(readingData); // closing data.txt
    
    FILE* lockfile = fopen(".verrouData","w"); // creating .verrouData file
-   fclose(lockfile);
+   fclose(lockfile); // closing .verrouData
    
    FILE* writingData = fopen("data.txt", "w+"); // writing in data.txt 
    if (writingData == NULL){ // if opening fails
@@ -37,11 +37,11 @@ void visualisationC(float puissance_f){
    }
    
    if (puissance_f == 0){
-      fprintf(writingData, "%s\n%.2f\n%.2f", "false", Tint, Text);
+      fprintf(writingData, "%s\n%.2f\n%.2f", "false", Tint, Text); // writing "false" in data.txt
    } else {
-      fprintf(writingData, "%s\n%.2f\n%.2f", "true", Tint, Text);
+      fprintf(writingData, "%s\n%.2f\n%.2f", "true", Tint, Text); // writing "true" in data.txt
    }
-   fclose(writingData);
+   fclose(writingData); // closing data.txt
    
    remove(".verrouData"); // deleting .verrouData file
 }
