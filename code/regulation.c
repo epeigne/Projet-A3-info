@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include "regulation.h"
 
+#define DELTA_T 10 // PID constants
+#define K_P 1.1
+#define K_I 0.2
+#define K_D 0.15
+
 	 
 float regulationTest(int regul,float consigne,float* tabT, int nT){
 	float cmd = 100.0;
@@ -27,26 +32,21 @@ float regulationTest(int regul,float consigne,float* tabT, int nT){
 	return cmd;
 }
 
-float regulationPID(float consigne, float Tint, float* I, float* previousE, float* previousConsigne){
-	float Kp = 1.1; // PID constants
-	float Ki = 0.2;
-	float Kd = 0.15;
-	int deltaT = 10;
-	
-	float e = consigne - Tint; 
+float regulationPID(float consigne, float Tint, float* I, float* previousE, float* previousConsigne){	
+	float e = consigne - Tint; // compute gap between consigne and current temp
 	
 	// proportional term 
-	float P = Kp * e; 
+	float P = K_P * e; 
 	
 	// intergral term 
 	if (*previousE < e){
-		*I += Ki * (deltaT * *previousE + (deltaT * (e - *previousE)) / 2);
+		*I += K_I * (DELTA_T * *previousE + (DELTA_T * (e - *previousE)) / 2);
 	} else {
-		*I += Ki * (deltaT * e + (deltaT * (*previousE - e)) / 2);
+		*I += K_I * (DELTA_T * e + (DELTA_T * (*previousE - e)) / 2);
 	}
 	
 	// derivate term
-	float D = Kd * (e - *previousE) / deltaT;
+	float D = K_D * (e - *previousE) / DELTA_T;
 
 	if (consigne != *previousConsigne){ // reseting integral and derivate value if consigna has changed or if it is the first iteration
 	    *I = 0;
