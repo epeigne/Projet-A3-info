@@ -9,7 +9,7 @@ void releve(FT_HANDLE *card, temp_t myTemp){
 
     DWORD RxBytes;
     DWORD TxBytes;
-    DWORD BytesReceived;
+    DWORD BytesReturned;
     DWORD EventDWord;
 
     char RxBuffer[64];
@@ -27,7 +27,7 @@ void releve(FT_HANDLE *card, temp_t myTemp){
         if(RxBytes > 0){
 
             //read the data
-            ftStatus = FT_Read(card, RxBuffer, RxBytes, &BytesReceived);
+            ftStatus = FT_Read(card, RxBuffer, RxBytes, &BytesReturned);
 
             //check if there is an error
             if (ftStatus != FT_OK) {
@@ -38,7 +38,7 @@ void releve(FT_HANDLE *card, temp_t myTemp){
                 int oct_read = 0; //number of octet read
 
                 //get the data from the buffer and create SOTs values
-                for(int i = 0; i < BytesReceived; i++){
+                for(int i = 0; i < BytesReturned; i++){
                     //check last 4 bits of the octet
                     switch (RxBuffer[i]&0xF0 >> 4)
                     {
