@@ -8,6 +8,6 @@
 	
 float regulationTest(int regul,float consigne,float* tabT, int nT);
 float regulation(float consigne, float tempInt);
-float regulation_PID(float consigne, float* tabT, int nT);
+float regulationPID(float consigne, float Tint, float* I, float* previousE, float* previousConsigne);
 
 #endif

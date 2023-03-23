@@ -4,90 +4,84 @@
 
 	 
 float regulationTest(int regul,float consigne,float* tabT, int nT){
-	float cmd;
+	float cmd = 100.0;
 	
-	if (consigne == 5){ // stops the regulation when "consigne" == 5°C
-		return 5;
-	}
-	
-	if(regul == 1){
+	if(regul == 1){ // tout ou rien
 		for (int i = 0; i < nT; i++)
 		{
-			cmd = regulation(consigne,tabT[i-1], tabT[i]);
+			cmd = regulation(consigne,tabT[i]);
 		}
 	}
 	
-	if (regul == 2){
-		float Kp = 1.1; // PID constants
-		float oldConsigne;
-		float newConsigne;
-		float tabConsigne[nT];
-		
-		float I;
-		
-		/*struct temp_t temparature = 
-		struct simParam_s* param_ps = simConstruct(temp_t temperature);*/
+	if (regul == 2){ // PID
+		float integral = 0;
+		float previousE = 0;
+		float previousConsigne = 0;
 		
 		for (int i = 0; i < nT; i++)
 		{
-			if (i == 0){
-				newConsigne = simCalc(regulationPID(consigne, consigne, i, &I), param_ps);
-				oldConsigne = consigne;
-			} else {
-				cmd = regulationPID(newConsigne, oldConsigne, i);
-				oldConsigne = newConsigne;
-				newConsigne = cmd;
-			}
+			cmd = regulationPID(consigne, tabT[i], &integral, &previousE, &previousConsigne);
 		}
 	}
 
 	return cmd;
 }
 
-float regulationPID(float newConsigne, float oldConsigne, int iterrationCount, float* I){
+float regulationPID(float consigne, float Tint, float* I, float* previousE, float* previousConsigne){
 	float Kp = 1.1; // PID constants
 	float Ki = 0.2;
 	float Kd = 0.15;
+	int deltaT = 10;
 	
-	float P = newConsigne * Kp;
+	float e = consigne - Tint;
 	
-	if (iterrationCount == 0){
-		return P; 
+	// proportional term 
+	float P = Kp * e; 
+	
+	// intergral term 
+	if (*previousE < e){
+		*I += Ki * (deltaT * *previousE + (deltaT * (e - *previousE)) / 2);
+	} else {
+		*I += Ki * (deltaT * e + (deltaT * (*previousE - e)) / 2);
 	}
 	
-	float e = newConsigne - oldConsigne;
-	
-	if (e > 0){
-		
+	// derivate term
+	float D = Kd * (e - *previousE) / deltaT;
+
+	if (consigne != *previousConsigne){
+	    *I = 0;
+		D = 0;
 	}
 	
-	*I += Ki * ;
-	
-	
-	
-	float D;
-	
-	
-	
-	return P + *I + D;
-}
+	*previousE = e;
+	*previousConsigne = consigne;
 
+	float cmd = P + *I + D;
 
-float regulation(float consigne, float oldT, float newT){
-	float cmd;
-
-	if(consigne > 0){
-		if(newT < oldT){
-			cmd = 50;
-		}
-		else{
-			cmd = 0;
-		}
+	if (cmd > 100){ // in case if the cmd is too big or too small
+		return 100;
 	}
-	else{
-		cmd = 0;
+	if (cmd < 0){
+		return 0;
 	}
 	return cmd;
+}
+
+float regulation(float consigne, float tempInt){
+
+	// check if the temperature is lower than the consigne
+	// if yes, return 50 else return 0
+
+	float cmd;
+
+	if(tempInt < consigne){
+		cmd = 50;
+	}else{
+		cmd = 0;
+	}
+
+	return cmd;
+
 }
 
   
