@@ -33,7 +33,7 @@ float regulationPID(float consigne, float Tint, float* I, float* previousE, floa
 	float Kd = 0.15;
 	int deltaT = 10;
 	
-	float e = consigne - Tint;
+	float e = consigne - Tint; 
 	
 	// proportional term 
 	float P = Kp * e; 
@@ -48,15 +48,15 @@ float regulationPID(float consigne, float Tint, float* I, float* previousE, floa
 	// derivate term
 	float D = Kd * (e - *previousE) / deltaT;
 
-	if (consigne != *previousConsigne){
+	if (consigne != *previousConsigne){ // reseting integral and derivate value if consigna has changed or if it is the first iteration
 	    *I = 0;
 		D = 0;
 	}
 	
-	*previousE = e;
+	*previousE = e; // updating previous gap and consigne
 	*previousConsigne = consigne;
 
-	float cmd = P + *I + D;
+	float cmd = P + *I + D; 
 
 	if (cmd > 100){ // in case if the cmd is too big or too small
 		return 100;
