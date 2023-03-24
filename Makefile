@@ -17,3 +17,16 @@ simulation: simulateur.c test_simulateur.c visualisationC.c visualisationT.c reg
 #execute simulation request even if simulation executable is up to date
 .PHONY: simulation
 
+
+testusb: testusb.c visualisationC.c visualisationT.c regulation.c consigne.c releve.c commande.clean
+	gcc testusb.c visualisationC.c visualisationT.c regulation.c consigne.c releve.c commande.c lib/ftd2xx.lib -o testusb
+	
+	./testusb
+
+#execute testusb request even if testusb executable is up to date
+.PHONY: testusb
+
+
+#makefile clean (delete all executable)
+clean:
+	rm -f test simulation testusb
