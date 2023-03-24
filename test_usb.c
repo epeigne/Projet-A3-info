@@ -5,7 +5,7 @@
 #include "Inc/consigne.h"
 #include "Inc/visualisationC.h"
 #include "Inc/releve.h"
-//#include "Inc/commande.h"
+#include "Inc/commande.h"
 
 #define CHOICE 2 // 1 pour la regulation TOR / 2 pour la regulation PID
 
@@ -77,7 +77,7 @@ int main(){
 
 		visualisationT(temperature); // visualisation de la temperature
 
-        //commande(ftHandle, puissance); // commande de la puissance de chauffage (non fonctionnel
+        commande(ftHandle, puissance); // commande de la puissance de chauffage (non fonctionnel
 		
 	}
 	//Close the device

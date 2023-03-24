@@ -18,7 +18,7 @@ simulation: simulateur.c test_simulateur.c visualisationC.c visualisationT.c reg
 .PHONY: simulation
 
 
-testusb: testusb.c visualisationC.c visualisationT.c regulation.c consigne.c releve.c commande.clean
+testusb: testusb.c visualisationC.c visualisationT.c regulation.c consigne.c releve.c commande.c
 	gcc testusb.c visualisationC.c visualisationT.c regulation.c consigne.c releve.c commande.c lib/ftd2xx.lib -o testusb
 	
 	./testusb
