@@ -42,7 +42,7 @@ float regulationPID(float consigne, float Tint, float* I, float* previousE, floa
 	if (*previousE < e){
 		*I += K_I * (DELTA_T * *previousE + (DELTA_T * (e - *previousE)) / 2); // trapezoidal rule
 	} else {
-		*I += K_I * (DELTA_T * e + (DELTA_T * (*previousE - e)) / 2); // trapezoidal rule
+		*I += K_I * (DELTA_T * *previousE - (DELTA_T * (*previousE - e)) / 2); // trapezoidal rule
 	}
 	
 	// derivate term
