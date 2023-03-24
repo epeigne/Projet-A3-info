@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "regulation.h"
+#include "Inc/regulation.h"
 
 #define DELTA_T 10 // PID constants
 #define K_P 1.1

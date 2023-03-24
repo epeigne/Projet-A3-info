@@ -3,7 +3,7 @@
 
 #include <windows.h>
 #include "../lib/ftd2xx.h"
-#include "define.h"
+#include "../define.h"
 
 
 void releve(FT_HANDLE ftHandle, temp_t myTemp);

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "../code/define.h"
+#include "define.h"
 
    struct simParam_s{
       float tempInt_f;

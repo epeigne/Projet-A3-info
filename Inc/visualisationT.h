@@ -1,7 +1,7 @@
 #ifndef VISUALISATIONT_H
 #define VISUALISATIONT_H
 #include <string.h>
-#include "define.h" 
+#include "../define.h" 
 #include <unistd.h>
 
 // Pensez à bien proteger vos .h avec des ifndef

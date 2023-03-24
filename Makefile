@@ -1,6 +1,6 @@
 #makefile autotest (create new test executable and execute it)
-test: autotests.c maintest.c code/visualisationC.c code/visualisationT.c code/regulation.c code/consigne.c
-	gcc autotests.c maintest.c code/visualisationC.c code/visualisationT.c code/regulation.c code/consigne.c -o test
+test: autotests.c maintest.c visualisationC.c visualisationT.c regulation.c consigne.c
+	gcc autotests.c maintest.c visualisationC.c visualisationT.c regulation.c consigne.c -o test
 	
 	./test
 
@@ -8,8 +8,8 @@ test: autotests.c maintest.c code/visualisationC.c code/visualisationT.c code/re
 .PHONY: test
 
 #makefile simulation (create new simulation executable and execute it)
-simulation: simu/simulateur.c simu/test_simulateur.c code/visualisationC.c code/visualisationT.c code/regulation.c code/consigne.c
-	gcc simu/simulateur.c simu/test_simulateur.c code/visualisationC.c code/visualisationT.c code/regulation.c code/consigne.c -o simulation
+simulation: simulateur.c test_simulateur.c visualisationC.c visualisationT.c regulation.c consigne.c
+	gcc simulateur.c test_simulateur.c visualisationC.c visualisationT.c regulation.c consigne.c -o simulation
 	
 	./simulation
 

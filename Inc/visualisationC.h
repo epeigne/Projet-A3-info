@@ -2,7 +2,7 @@
 #define VISUALISATIONC_H
 
 #include <string.h>
-#include "define.h" 
+#include "../define.h" 
 	
 // Pensez à bien proteger vos .h avec des ifndef
 

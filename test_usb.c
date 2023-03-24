@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "visualisationT.h"
-#include "regulation.h"
-#include "consigne.h"
-#include "visualisationC.h"
-#include "releve.h"
+#include "Inc/visualisationT.h"
+#include "Inc/regulation.h"
+#include "Inc/consigne.h"
+#include "Inc/visualisationC.h"
+#include "Inc/releve.h"
 
 #define CHOICE 2 // 1 pour la regulation TOR / 2 pour la regulation PID
 
