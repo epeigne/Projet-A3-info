@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "Inc/visualisationT.h"
 #include "Inc/regulation.h"
 #include "Inc/consigne.h"
@@ -51,9 +52,13 @@ int main(){
 	float previousConsigne = 0; // consigne precedente pour la regulation PID
 	float previousEcart = 0; // ecart precedente pour la regulation PID
 	float puissance = 0; // puissance de chauffage
-	float temp_cons = 50; // consigne de temperature
+	float temp_cons = 5; // consigne de temperature
 	
 	while(1){
+
+        releve(ftHandle, &temperature); // releve de la temperature
+
+        visualisationT(temperature); // visualisation de la temperature
 
 		temp_cons = consigne(temp_cons); // calcul de la consigne de temperature
 
@@ -70,14 +75,11 @@ int main(){
 			break;
 		}
 
-
-		releve(ftHandle, &temperature); // releve de la temperature
-
 		visualisationC(puissance); // visualisation de la puissance
 
-		visualisationT(temperature); // visualisation de la temperature
-
         commande(ftHandle, puissance); // commande de la puissance de chauffage
+
+       sleep(0.5); 
 		
 	}
 	//Close the device
