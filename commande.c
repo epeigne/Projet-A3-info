@@ -8,10 +8,10 @@ void commande(FT_HANDLE ftHandle, float commande){
     DWORD BytesWritten;
     DWORD EventDWord;
 
-    char TxBuffer[1]; // contains the data to write to the device
-    TxBuffer[1] |= 1<<7; // setting the bit 7 to 1 because heating is always on 
+    char TxBuffer[1] = {0}; // contains the data to write to the device
+    TxBuffer[0] |= 1<<7; // setting the bit 7 to 1 because heating is always on 
     int puis = (commande * 127) / 100; // converting command in % to a value between 0 and 127
-    TxBuffer[1] |= (puis & 0x7F); // writting heating power in to the data
+    TxBuffer[0] |= (puis & 0x7F); // writting heating power in to the data
     
     //check if we can write data
     ftStatus = FT_GetStatus(ftHandle, &RxBytes, &TxBytes, &EventDWord);
