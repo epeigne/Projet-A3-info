@@ -77,7 +77,7 @@ int main(){
 
 		visualisationT(temperature); // visualisation de la temperature
 
-        commande(ftHandle, puissance); // commande de la puissance de chauffage (non fonctionnel
+        commande(ftHandle, puissance); // commande de la puissance de chauffage
 		
 	}
 	//Close the device

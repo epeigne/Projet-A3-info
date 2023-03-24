@@ -24,7 +24,7 @@ void releve(FT_HANDLE ftHandle, temp_t myTemp){
     else{
 
         //if there is data to read
-        if(RxBytes > 0){
+        if(RxBytes >     0){
 
             //read the data
             ftStatus = FT_Read(ftHandle, RxBuffer, RxBytes, &BytesReturned);
