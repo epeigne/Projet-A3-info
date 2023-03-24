@@ -71,7 +71,7 @@ int main(){
 		}
 
 
-		releve(ftHandle, temperature); // releve de la temperature
+		releve(ftHandle, &temperature); // releve de la temperature
 
 		visualisationC(puissance); // visualisation de la puissance
 
