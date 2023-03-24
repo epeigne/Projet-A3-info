@@ -5,6 +5,7 @@
 #include "Inc/consigne.h"
 #include "Inc/visualisationC.h"
 #include "Inc/releve.h"
+//#include "Inc/commande.h"
 
 #define CHOICE 2 // 1 pour la regulation TOR / 2 pour la regulation PID
 
