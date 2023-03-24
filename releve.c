@@ -38,18 +38,9 @@ void releve(FT_HANDLE ftHandle, temp_t* myTemp){
             else{
                 
                 int oct_read = 0; //number of octet read
-                // printf("Buffer: ");
-                // for (int i = 0; i < BytesReturned; i++)
-                // {
-                //     printf("%x ", RxBuffer[i]);
-                // }
-                // printf("\n");
-                
-                // printf("BytesReturned: %d\n", BytesReturned);
-                
+                                
                 //get the data from the buffer and create SOTs values
                 for(int i = 0; i < BytesReturned; i++){
-                    printf("%d",i);
                     //check last 4 bits of the octet and remap it to the right place
                     if((RxBuffer[i]&0xF0)>> 4 == 0b0000){
                     
@@ -87,11 +78,16 @@ void releve(FT_HANDLE ftHandle, temp_t* myTemp){
 
                 //if all the octets have been read
                 if(oct_read == 6 && SOT_ext != 0 && SOT_int != 0){
-                    // printf("test");
                     //convert SOTs to temperature
-                    printf("SOT_int = %d, SOT_ext = %d\n", SOT_int, SOT_ext);
-                    myTemp->interieure = -39.64 + 0.04*SOT_int;
-                    myTemp->exterieure = -39.64 + 0.04*SOT_ext;
+                    float temp_int = -39.64 + 0.04*SOT_int;
+                    float temp_ext = -39.64 + 0.04*SOT_ext;
+                   
+                   //print the temperatures on the console
+                    printf("Temperature interieure: %f / ", temp_int);
+                    printf("Temperature exterieure: %f\n", temp_ext);
+                    
+                    myTemp->interieure = temp_int;
+                    myTemp->exterieure = temp_ext;
                 }
             }
         }
