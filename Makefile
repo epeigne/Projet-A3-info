@@ -27,6 +27,6 @@ testusb: test_usb.c visualisationC.c visualisationT.c regulation.c consigne.c re
 .PHONY: testusb
 
 
-#makefile clean (delete all executable)
+#makefile clean (delete all executable and lockers)
 clean:
-	rm -f test simulation testusb
+	rm -f test.exe simulation.exe testusb.exe .verrouConsigne .verrouData trace.txt
