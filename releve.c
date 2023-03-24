@@ -84,11 +84,6 @@ void releve(FT_HANDLE ftHandle, temp_t* myTemp){
                     myTemp->interieure = -39.64 + 0.04*SOT_int;
                     myTemp->exterieure = -39.64 + 0.04*SOT_ext;
                 }
-                else{
-                    // printf("SOT_int = %d, SOT_ext = %d\n", SOT_int, SOT_ext);
-                    // printf("nombre d'octets lus = %d\n", oct_read);
-                    // printf("%d\n", BytesReturned);
-                }
             }
         }
     }
